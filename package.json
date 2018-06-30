@@ -1,8 +1,9 @@
 {
   "name": "gdrive-tree",
   "description": "Download google a drive folder tree with document and spreadsheet contents extracted",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Kai Davenport <kaiyadavenport@gmail.com>",
+  "main": "src/index.js",
   "dependencies": {
     "async": "^2.6.1",
     "bottleneck": "^2.5.0",
