@@ -40,7 +40,7 @@ const throttleFunctions = {
 const getFileMeta = (opts, done) => {
   const params = {
     fileId: opts.itemId,
-    fields: 'description,createdTime,modifiedTime,lastModifyingUser,version',
+    fields: 'description,createdTime,modifiedTime,lastModifyingUser,version,properties',
   }
   limiter.submit(throttleFunctions.getFile, opts, params, (err, res) => {
     if(err) return done(err)
@@ -76,6 +76,22 @@ const getDocument = (opts, done) => {
   }, done)
 }
 
+/*
+
+  JSON
+  
+*/
+
+const getJSON = (opts, done) => {
+  const params = {
+    fileId: opts.itemId,
+    alt: 'media',
+  }
+  limiter.submit(throttleFunctions.getFile, opts, params, (err, res) => {
+    if(err) return done(err)
+    done(null, res.data)
+  })
+}
 
 /*
 
@@ -200,6 +216,7 @@ const MIME_TYPES = {
   'application/vnd.google-apps.folder': listFolder,
   'application/vnd.google-apps.document': getDocument,
   'application/vnd.google-apps.spreadsheet': getSpreadsheet,
+  'application/json': getJSON,
 }
 
 
