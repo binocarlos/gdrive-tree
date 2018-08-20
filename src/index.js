@@ -155,7 +155,7 @@ const getSpreadsheetData = (opts, done) => {
           if(err) return nextWorksheet(err)
           nextWorksheet(null, {
             meta,
-            data: cleanRows(rows)
+            data: JSON.stringify(cleanRows(rows))
           })
         })
       }, next)
